@@ -6,12 +6,12 @@ A simple Discord bot built using Python and the `discord.py` library. This bot c
 
 ## 📌 Features
 
-* Greets users when they type specific messages
+* Greets users when they type specific messages.
 * Responds to basic commands:
 
   * `hello`
   * `how are you`
-* Welcomes new members when they join the server
+* Welcomes new members when they join the server.
 
 ---
 
@@ -19,8 +19,8 @@ A simple Discord bot built using Python and the `discord.py` library. This bot c
 
 ### Event Handlers Used
 
-* **on_ready** – Confirms the bot is online
-* **on_message** – Listens to messages and responds when needed
-* **on_member_join** – Sends a welcome message in the `#general` channel
+* **on_ready** – Confirms the bot is online.
+* **on_message** – Listens to messages and responds when needed.
+* **on_member_join** – Sends a welcome message in the server channel.
 
 ---
