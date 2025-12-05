@@ -1,26 +1,29 @@
 # Discord Bot
 
-A simple Discord bot built using Python and the `discord.py` library. This bot can respond to basic text commands and welcome new members to the server.
+An Discord bot built using Python, `discord.py`, and `discord.ext.commands`. This version introduces slash commands, improved structure, and guild-specific command syncing.
 
 ---
 
-## 📌 Features
+## 📌 What's New
 
-* Greets users when they type specific messages.
-* Responds to basic commands:
-
-  * `hello`
-  * `how are you`
-* Welcomes new members when they join the server.
+* Switched from `discord.Client` to `commands.Bot` for more functionality
+* Added slash commands using `app_commands`
+* Synced commands to a specific guild for faster updates
+* Added a `/hello` command
+* Added a `/printer` command that echoes user input
+* Improved bot structure and event handling
 
 ---
 
 ## 📂 How It Works
 
-### Event Handlers Used
+### Event Improvements
 
-* **on_ready** – Confirms the bot is online.
-* **on_message** – Listens to messages and responds when needed.
-* **on_member_join** – Sends a welcome message in the server channel.
+* **on_ready** now syncs slash commands to your server
+* **on_message** still listens for normal text commands like `hello` and `how are you`
+* **on_member_join** attempts to welcome new users in the `#general` channel
 
----
+### Slash Commands
+
+* `/hello` — Replies with a personal greeting
+* `/printer` — Sends back whatever the user types
