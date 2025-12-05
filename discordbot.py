@@ -6,6 +6,13 @@ class client(commands.Bot):
     async def on_ready(self):
         print(f'Logged in as {self.user}!')
 
+        try:
+             guild = discord.Object(id=YOUR_BOT_ID)
+             synced = await self.tree.sync(guild=guild)
+             print(f'Synced {len(synced)} command(s) to the guild {guild.id}')
+        except Exception as e:
+            print(f'Error syncing commands: {e}')
+
     async def on_message(self, message):
         if message.author == self.user:
             return
@@ -27,10 +34,14 @@ intents.message_content = True
 client = client(command_prefix='!', intents=intents)
 
 
-GUILD_ID = discord.Object(id=YOUR_SERVER_ID)
+GUILD_ID = discord.Object(id=YOUR_BOT_ID)
 
 @client.tree.command(name='hello', description='Says hello to the user', guild=GUILD_ID)
 async def hello(interaction: discord.Interaction):
     await interaction.response.send_message(f'Hello {interaction.user.mention}!')
 
-client.run('YOUR_BOT_TOKEN')
+@client.tree.command(name='printer', description='Prints whatever the user input.', guild=GUILD_ID)
+async def printer(interaction: discord.Interaction, printer: str):
+    await interaction.response.send_message(printer)
+
+client.run('YOUR_API_KEY')
