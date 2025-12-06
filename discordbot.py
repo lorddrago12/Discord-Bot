@@ -54,4 +54,5 @@ async def embed(interaction: discord.Interaction):
     await interaction.response.send_message(embed=embed)
 
 
-client.run('YOUR_BOT_ID')
+client.run('YOUR_BOT_TOKEN')
+
