@@ -7,7 +7,7 @@ class client(commands.Bot):
         print(f'Logged in as {self.user}!')
 
         try:
-             guild = discord.Object(id=YOUR_BOT_ID)
+             guild = discord.Object(id=1445753336249716881)
              synced = await self.tree.sync(guild=guild)
              print(f'Synced {len(synced)} command(s) to the guild {guild.id}')
         except Exception as e:
@@ -44,4 +44,14 @@ async def hello(interaction: discord.Interaction):
 async def printer(interaction: discord.Interaction, printer: str):
     await interaction.response.send_message(printer)
 
-client.run('YOUR_API_KEY')
+@client.tree.command(name='coffebreak', description='embed demo!', guild=GUILD_ID)
+async def embed(interaction: discord.Interaction):
+    embed = discord.Embed(title="Have a coffe", url="https://www.youtube.com/@LordDrago12", description="coffe increases focus.", color=0x00ff12)
+    embed.set_thumbnail(url="https://i.pinimg.com/736x/21/a6/72/21a672ca5abaaed41a285edb34252e00.jpg")
+    embed.add_field(name="You can also listen to music while drinking coffe", value="music improves mood", inline=True)
+    embed.set_footer(text="Have a nice day!")
+    embed.set_author(name="LordDrago", url="https://www.youtube.com/@LordDrago12", icon_url="https://i.pinimg.com/736x/ef/ad/8c/efad8ca3a538cd6172c96987d71bac56.jpg")
+    await interaction.response.send_message(embed=embed)
+
+
+client.run('YOUR_BOT_ID')
