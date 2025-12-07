@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from discord import app_commands
+from discord import Interaction, app_commands
 
 class client(commands.Bot):
     async def on_ready(self):
@@ -54,5 +54,48 @@ async def embed(interaction: discord.Interaction):
     await interaction.response.send_message(embed=embed)
 
 
-client.run('YOUR_BOT_TOKEN')
+class View(discord.ui.View):
+    @discord.ui.button(label='click me', style=discord.ButtonStyle.green, emoji='☕')
+    async def button_callback(self, interaction: discord.Interaction, button: discord.ui.Button):
+        await interaction.response.send_message(f'{interaction.user.mention}, you clicked the button!')
 
+    @discord.ui.button(label='click me', style=discord.ButtonStyle.red, emoji='🔥')
+    async def second_button_callback(self, interaction: discord.Interaction, button: discord.ui.Button):
+        await interaction.response.send_message(f'{interaction.user.mention}, you clicked the second button!')
+
+    @discord.ui.button(label='click me', style=discord.ButtonStyle.blurple, emoji='👻')
+    async def third_button_callback(self, interaction: discord.Interaction, button: discord.ui.Button):
+        await interaction.response.send_message(f'{interaction.user.mention}, you clicked the third button!')
+
+
+@client.tree.command(name='button', description='Displaying a button.', guild=GUILD_ID)
+async def myButton(interaction: discord.Interaction):
+    await interaction.response.send_message(view=View())
+
+class Menu(discord.ui.Select):
+    def __init__(self):
+        options = [
+            discord.SelectOption(label="Option 1", description="This is the first option", emoji="🔥", value="option1"),
+            discord.SelectOption(label="Option 2", description="This is the second option", emoji="👻", value="option2"),
+            discord.SelectOption(label="Option 3", description="This is the third option", emoji="☕", value="option3")
+        ]
+
+        super().__init__(placeholder="Select an option", min_values=1, max_values=1, options=options)
+
+    async def callback(self, interaction: discord.Interaction): 
+        await interaction.response.send_message(f'You selected {self.values[0]}')   
+
+
+class menuview(discord.ui.View):
+    def __init__(self):
+        super().__init__()
+        self.add_item(Menu())
+
+
+
+@client.tree.command(name='menu', description='Displaying a dropdown menu.', guild=GUILD_ID)
+async def mymenu(interaction: discord.Interaction):
+    await interaction.response.send_message(view=menuview())
+
+
+client.run('YOUR_BOT_TOKEN')
