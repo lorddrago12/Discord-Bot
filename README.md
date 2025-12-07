@@ -1,6 +1,6 @@
 # Discord Bot
 
-An Discord bot built using Python, `discord.py`, and `discord.ext.commands`. This version introduces slash commands, improved structure, and guild-specific command syncing.
+An updated Discord bot built using Python, `discord.py`, and `discord.ext.commands`. This version introduces slash commands, improved structure, and guild-specific command syncing.
 
 ---
 
@@ -27,3 +27,4 @@ An Discord bot built using Python, `discord.py`, and `discord.ext.commands`. Thi
 
 * `/hello` — Replies with a personal greeting
 * `/printer` — Sends back whatever the user types
+* `/coffebreak` — Sends an embed with a title, thumbnail, field, author, and footer
